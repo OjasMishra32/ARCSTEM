@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Downingtown STEM Academy — American Rocketry Challenge Team</title>
+  <meta name="description" content="Downingtown STEM Academy’s ARC Team: mission, challenge details, team leads, updates, and contact." />
+  <style>
+    /* ======== THEME ======== */
+    :root{
+      --bg:#0A0F1A;            /* deep space */
+      --panel:#0F1629;         /* cards */
+      --text:#E6F1FF;          /* text */
+      --muted:#A5B4D4;         /* secondary */
+      --line:#1E2A45;          /* borders */
+      --red:#E31C25;           /* accent red */
+      --blue:#2B6CB0;          /* accent blue */
+      --white:#FFFFFF;
+      --radius:16px;
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+      --maxw:1200px;
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, Noto Sans, "Apple Color Emoji", "Segoe UI Emoji";
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, #122042 0%, transparent 60%),
+        radial-gradient(900px 500px at 110% -20%, #1a2d55 0%, transparent 55%),
+        linear-gradient(180deg, #060912 0%, #0A0F1A 30%, #0A0F1A 100%);
+      min-height:100vh;
+    }
+    /* subtle star speckle */
+    body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.25;background-image:url('data:image/svg+xml;utf8,\
+      <svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160">\
+        <circle cx="10" cy="20" r="1" fill="white"/>\
+        <circle cx="80" cy="40" r="0.8" fill="white"/>\
+        <circle cx="130" cy="10" r="0.7" fill="white"/>\
+        <circle cx="40" cy="100" r="0.9" fill="white"/>\
+        <circle cx="120" cy="120" r="0.8" fill="white"/>\
+        <circle cx="20" cy="140" r="0.7" fill="white"/>\
+        <circle cx="100" cy="70" r="0.6" fill="white"/>\
+      </svg>');background-size:200px 200px}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;height:auto;border-radius:12px}
+    .container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+
+    /* ======== NAV ======== */
+    header{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);background:rgba(5,9,18,0.65);border-bottom:1px solid var(--line)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800}
+    .brand-badge{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(60% 80% at 60% 40%, var(--blue), var(--red));box-shadow:0 0 0 2px rgba(255,255,255,.06) inset, 0 6px 18px rgba(0,0,0,.35);font-size:14px}
+    .brand small{display:block;color:var(--muted);font-weight:600;font-size:12px}
+    .links{display:flex;gap:18px;align-items:center}
+    .links a{color:var(--muted);padding:8px 10px;border-radius:8px}
+    .links a:hover,.links a:focus{color:var(--white);background:rgba(255,255,255,.06);outline:none}
+    .menu-btn{display:none;background:none;border:1px solid var(--line);border-radius:10px;color:var(--text);padding:8px 10px}
+    @media (max-width:920px){.links{display:none}.menu-btn{display:inline-flex;align-items:center;gap:8px}.mobile-menu{display:none;position:absolute;left:0;right:0;top:100%;background:rgba(7,12,22,.98);border-bottom:1px solid var(--line)}.mobile-menu a{display:block;padding:14px 20px;border-top:1px solid var(--line);color:var(--muted)}.mobile-menu a:hover{background:rgba(255,255,255,.06);color:var(--white)}.mobile-open .mobile-menu{display:block}}
+
+    /* ======== HERO ======== */
+    .hero{position:relative;padding:96px 0 64px;overflow:hidden}
+    .hero-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:center}
+    .badge{display:inline-flex;gap:8px;align-items:center;padding:6px 10px;border-radius:999px;font-size:12px;color:var(--white);background:linear-gradient(90deg, rgba(227,28,37,.1), rgba(43,108,176,.1));border:1px solid var(--line)}
+    .title{font-size:clamp(28px,5vw,56px);line-height:1.05;margin:10px 0 12px;font-weight:800}
+    .subtitle{color:var(--muted);font-size:clamp(14px,2vw,18px);max-width:56ch}
+    .cta{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
+    .btn{padding:12px 16px;border-radius:12px;border:1px solid var(--line);font-weight:700;letter-spacing:.2px}
+    .btn-primary{background:linear-gradient(135deg,var(--red),var(--blue));color:white;border:none}
+    .btn-ghost{color:var(--text);background:rgba(255,255,255,.04)}
+    .btn:hover{transform:translateY(-1px);box-shadow:var(--shadow);transition:.2s}
+    .hero-visual{position:relative}
+    .rocket-card{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+    .rocket-svg{width:100%;height:300px;display:block}
+
+    /* ======== SECTIONS ======== */
+    section{padding:64px 0}
+    .section-title{font-size:clamp(22px,3vw,34px);margin:0 0 10px}
+    .section-sub{color:var(--muted);margin:0 0 22px;max-width:70ch}
+    .grid{display:grid;gap:18px}
+    .grid-3{grid-template-columns:repeat(3,1fr)}
+    .grid-2{grid-template-columns:repeat(2,1fr)}
+    @media (max-width:920px){.hero-inner{grid-template-columns:1fr}.grid-3,.grid-2{grid-template-columns:1fr}}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
+    .divider{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:28px 0}
+
+    /* ======== TEAM LEADS ======== */
+    .lead{display:grid;grid-template-columns:64px auto;gap:12px;align-items:center}
+    .avatar{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;font-weight:800;background:linear-gradient(135deg, rgba(227,28,37,.5), rgba(43,108,176,.5));border:1px solid var(--line)}
+    .role{display:inline-block;font-size:12px;color:#e6f1ff;background:rgba(43,108,176,.18);border:1px solid rgba(43,108,176,.35);padding:4px 8px;border-radius:999px}
+
+    /* ======== POSTS ======== */
+    .post{border:1px solid var(--line);border-radius:14px;padding:16px;background:rgba(255,255,255,.03)}
+    .post h4{margin:6px 0 6px}
+    .tag{display:inline-block;font-size:12px;color:#ffdede;background:rgba(227,28,37,.18);border:1px solid rgba(227,28,37,.35);padding:4px 8px;border-radius:999px}
+
+    /* ======== CONTACT ======== */
+    .contact-card p{margin:.2rem 0}
+
+    /* ======== FOOTER ======== */
+    footer{border-top:1px solid var(--line);background:rgba(255,255,255,.02);padding:28px 0;margin-top:40px}
+    .footer-grid{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center}
+    .socials{display:flex;gap:10px}
+    .socials a{display:inline-grid;place-items:center;width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.04)}
+  </style>
+</head>
+<body>
+  <!-- ===== NAV ===== -->
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="brand-badge" aria-hidden="true">ARC</div>
+        <div>
+          Downingtown STEM Academy<br/>
+          <small>American Rocketry Challenge Team</small>
+        </div>
+      </div>
+      <nav class="links" aria-label="Primary">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#challenge">Challenge</a>
+        <a href="#team">Team</a>
+        <a href="#news">News</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">☰ Menu</button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile Menu">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#challenge">Challenge</a>
+      <a href="#team">Team</a>
+      <a href="#news">News</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <main id="home" class="hero">
+    <div class="container hero-inner">
+      <div>
+        <span class="badge">🚀 Downingtown STEM Academy • ARC</span>
+        <h1 class="title">Reaching New Heights with the American Rocketry Challenge</h1>
+        <p class="subtitle">Student engineers designing, building, and testing precision rockets—developing real-world skills in engineering, physics, safety, and teamwork.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="#about">About Us</a>
+          <a class="btn btn-ghost" href="#challenge">Challenge</a>
+          <a class="btn btn-ghost" href="#contact">Contact</a>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="rocket-card">
+          <svg class="rocket-svg" viewBox="0 0 600 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0%" stop-color="#E31C25"/>
+                <stop offset="100%" stop-color="#2B6CB0"/>
+              </linearGradient>
+            </defs>
+            <g stroke="url(#g1)" stroke-width="2">
+              <path d="M60 160 C 120 80, 240 80, 300 160 S 480 240, 540 160" opacity=".7"/>
+              <path d="M300 60 L330 150 L300 140 L270 150 Z"/>
+              <circle cx="300" cy="160" r="50" opacity=".5"/>
+              <circle cx="300" cy="160" r="90" opacity=".25"/>
+            </g>
+            <g stroke="#ffffff55" stroke-width="1">
+              <path d="M70 230 H530"/>
+              <path d="M70 240 H530"/>
+              <path d="M70 250 H530"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="container">
+    <!-- ===== ABOUT ===== -->
+    <section id="about" aria-labelledby="about-title">
+      <h2 id="about-title" class="section-title">About the Team</h2>
+      <p class="section-sub">The American Rocketry Challenge is a national student rocketry competition focused on precise flight performance and safety. At DSA, students apply classroom physics and engineering to real builds and test campaigns.</p>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>Mission</h3>
+          <p class="muted">Design and fly a competition‑ready rocket that meets strict flight targets while building skills in CAD, simulation, fabrication, testing, data analysis, and range safety.</p>
+          <ul class="muted">
+            <li>Safety‑first, STEM‑focused</li>
+            <li>Precision altitude & duration goals</li>
+            <li>Recovery systems that protect a payload</li>
+            <li>Iterate • Test • Improve</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>What We Learn</h3>
+          <ul class="muted">
+            <li>Structures, aerodynamics, stability, mass budgeting</li>
+            <li>Avionics basics and flight data review</li>
+            <li>Teamwork, documentation, presentation</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CHALLENGE ===== -->
+    <section id="challenge" aria-labelledby="challenge-title">
+      <h2 id="challenge-title" class="section-title">Challenge Overview</h2>
+      <p class="section-sub">Teams design, build, and launch a model rocket to hit specified altitude and flight time targets while carrying a fragile payload—all under established safety codes.</p>
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>Key Elements</h3>
+          <ul class="muted">
+            <li>Target altitude & flight duration (season rules)</li>
+            <li>Payload protection requirements</li>
+            <li>Recovery systems (parachute, shock cords, etc.)</li>
+            <li>Safety code compliance & checklists</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Our Approach</h3>
+          <ol class="muted">
+            <li>Concept & Simulation</li>
+            <li>Design & Materials</li>
+            <li>Build & Ground Tests</li>
+            <li>Flight Tests & Tuning</li>
+          </ol>
+        </div>
+        <div class="card">
+          <h3>Documentation</h3>
+          <p class="muted">Clear logs of design choices, test results, and iteration steps to inform improvements and share learning.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TEAM LEADS ===== -->
+    <section id="team" aria-labelledby="team-title">
+      <h2 id="team-title" class="section-title">Team Leads</h2>
+      <p class="section-sub">Leadership for coordination, safety, and technical direction.</p>
+      <div class="grid grid-3">
+        <div class="card lead">
+          <div class="avatar">OM</div>
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><strong>Ojasva Mishra</strong><span class="role">Team Lead</span></div>
+            <div class="muted">Downingtown STEM Academy</div>
+          </div>
+        </div>
+        <div class="card lead">
+          <div class="avatar">TG</div>
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><strong>Tommy Grulke</strong><span class="role">Team Lead</span></div>
+            <div class="muted">Downingtown STEM Academy</div>
+          </div>
+        </div>
+        <div class="card lead">
+          <div class="avatar">BL</div>
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><strong>Brandon Latorre</strong><span class="role">Team Lead</span></div>
+            <div class="muted">Downingtown STEM Academy</div>
+          </div>
+        </div>
+      </div>
+      <p class="muted" style="margin-top:8px">(Only verified leaders listed—no filler names.)</p>
+    </section>
+
+    <!-- ===== NEWS ===== -->
+    <section id="news" aria-labelledby="news-title">
+      <h2 id="news-title" class="section-title">News & Updates</h2>
+      <p class="section-sub">Progress reports, test recaps, and announcements.</p>
+      <div class="grid grid-3" id="posts"></div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section id="contact" aria-labelledby="contact-title">
+      <h2 id="contact-title" class="section-title">Contact</h2>
+      <div class="card contact-card">
+        <p class="muted">Email: <a href="mailto:omishra01@student.dasd.org">omishra01@student.dasd.org</a></p>
+        <p class="muted">School: Downingtown STEM Academy</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <strong>Downingtown STEM Academy — ARC Team</strong><br>
+        <span class="muted">© <span id="year"></span>. Designed with aerospace-inspired accents.</span>
+      </div>
+      <div class="socials" aria-label="Social links">
+        <a href="mailto:omishra01@student.dasd.org" aria-label="Email" title="Email">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="5" width="18" height="14" rx="2" stroke="white" opacity=".85"/><path d="M4 7l8 6 8-6" stroke="white" opacity=".85"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu & smooth scroll
+    const menuBtn=document.getElementById('menuBtn');
+    const mobileMenu=document.getElementById('mobileMenu');
+    menuBtn?.addEventListener('click',()=>{const open=document.body.classList.toggle('mobile-open');menuBtn.setAttribute('aria-expanded',String(open));});
+    mobileMenu?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{document.body.classList.remove('mobile-open');menuBtn.setAttribute('aria-expanded','false');}));
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const id=a.getAttribute('href');if(id&&id.length>1){const el=document.querySelector(id);if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth',block:'start'});}}});});
+
+    // Footer year
+    document.getElementById('year').textContent=new Date().getFullYear();
+
+    // Minimal example posts (no filler people/sponsors)
+    const posts=[
+      { title:'Static Fire • Success', date:'Aug 12, 2025', tags:['Testing'], body:'Clean ignition and thrust curve validation. Next step: mass checks & delay tuning.' },
+      { title:'CAD Freeze for Fin Can', date:'Aug 5, 2025', tags:['Design'], body:'Root chord & sweep refined; alignment jig ready for print.' },
+      { title:'Parent Info Night', date:'Aug 1, 2025', tags:['Outreach'], body:'Overview of season goals, safety plan, and test schedule.' }
+    ];
+    const postsEl=document.getElementById('posts');
+    posts.forEach(p=>{
+      const el=document.createElement('article');
+      el.className='post';
+      el.innerHTML=`<span class="muted">${p.date}</span><h4>${p.title}</h4><div style="display:flex;gap:6px;margin:6px 0;">${p.tags.map(t=>`<span class='tag'>${t}</span>`).join('')}</div><p class="muted">${p.body}</p>`;
+      postsEl.appendChild(el);
+    });
+  </script>
+</body>
+</html>
